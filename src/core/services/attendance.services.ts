@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { getAxios } from "@/lib/axios"
 import { getConfig } from "@/lib/utils"
-import { CheckActiveSessionResponse, EndSessionRequest, MarkAttendanceRequest, RegisterStudentRequest, StartSessionRequest, StartSessionResponse } from "@/components/pages/Attendance/attendance.interfaces"
+import { CheckActiveSessionResponse, EndSessionRequest, MarkAttendanceRequest, MarkAttendanceResponse, RegisterStudentRequest, StartSessionRequest, StartSessionResponse } from "@/components/pages/Attendance/attendance.interfaces"
 
 
 const attendanceApi = () => getAxios(getConfig().apiBaseUrl + "/Attendance")
@@ -15,13 +15,13 @@ export const useAttendanceService = () => {
           .then((res) => res.data as StartSessionResponse),
     })
 
-  const useMarkAttendance = () =>
-    useMutation<void, Error, MarkAttendanceRequest>({
-      mutationFn: (data) =>
-        attendanceApi()
-          .post<void>("/MarkAttendance", data)
-          .then((res) => res.data),
-    })
+    const useMarkAttendance = () =>
+      useMutation<MarkAttendanceResponse, Error, MarkAttendanceRequest>({
+        mutationFn: (data) =>
+          attendanceApi()
+            .post<MarkAttendanceResponse>("/MarkAttendance", data)
+            .then((res) => res.data),
+      })
 
   const useEndSession = () =>
     useMutation<void, Error, EndSessionRequest>({

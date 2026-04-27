@@ -7,6 +7,10 @@ export interface StartSessionResponse {
   sessionId: number
 }
 
+export interface MarkAttendanceResponse {
+  message: string
+}
+
 export interface MarkAttendanceRequest {
   StudentId: string
   LiveEmbedding: number[]

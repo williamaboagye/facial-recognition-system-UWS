@@ -187,7 +187,7 @@ export default function AttendanceRecords() {
       studentId: r.StudentId,
       moduleName: r.ModuleName,
       moduleCode: r.ModuleCode,
-      date: new Date(r.DateofAttendance).toLocaleDateString(),
+      date: new Date(r.DateofAttendance).toLocaleString(),
       status: r.Status,
     }))
   }, [data])
